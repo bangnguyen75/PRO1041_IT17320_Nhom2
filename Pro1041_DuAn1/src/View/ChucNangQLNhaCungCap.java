@@ -5,8 +5,9 @@
 package View;
 
 import DomainModel.NhaCungCap;
-import Service.INhaCungCapService;
+import Service.InhaCungCapService;
 import Service.Impl.NhaCungCapService;
+import Service.InhaCungCapService;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -24,7 +25,7 @@ public class ChucNangQLNhaCungCap extends javax.swing.JFrame {
      */
     private DefaultTableModel table;
     private DefaultComboBoxModel combo;
-    private INhaCungCapService nccs = new NhaCungCapService();
+    private InhaCungCapService nccs = new NhaCungCapService();
 
     public ChucNangQLNhaCungCap() {
         initComponents();
@@ -112,7 +113,7 @@ public class ChucNangQLNhaCungCap extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/supplier.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/supplier.png"))); // NOI18N
         jLabel1.setText("Quản Lý Nhà Cung Cấp");
 
         jLabel3.setText("ID ");
@@ -143,7 +144,7 @@ public class ChucNangQLNhaCungCap extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tb_nhacc);
 
-        btn_them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/plus.png"))); // NOI18N
+        btn_them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/plus.png"))); // NOI18N
         btn_them.setText("Thêm ");
         btn_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +152,7 @@ public class ChucNangQLNhaCungCap extends javax.swing.JFrame {
             }
         });
 
-        btn_sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/tools.png"))); // NOI18N
+        btn_sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/tools.png"))); // NOI18N
         btn_sua.setText("Sửa");
         btn_sua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +160,7 @@ public class ChucNangQLNhaCungCap extends javax.swing.JFrame {
             }
         });
 
-        btn_xoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete.png"))); // NOI18N
+        btn_xoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/delete.png"))); // NOI18N
         btn_xoa.setText("Xoá");
         btn_xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +170,7 @@ public class ChucNangQLNhaCungCap extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        btn_timKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/magnifying-glass.png"))); // NOI18N
+        btn_timKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/magnifying-glass.png"))); // NOI18N
         btn_timKiem.setText("Search");
         btn_timKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,7 +287,7 @@ public class ChucNangQLNhaCungCap extends javax.swing.JFrame {
                     .addComponent(btn_xoa))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();

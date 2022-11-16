@@ -7,7 +7,8 @@ package Service.Impl;
 import DomainModel.NhaCungCap;
 import Reponritory.INhaCungCapReponritory;
 import Reponritory.Impl.NhaCungCapReponritory;
-import Service.INhaCungCapService;
+import Service.InhaCungCapService;
+import Service.InhaCungCapService;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author BOSS
  */
-public class NhaCungCapService implements INhaCungCapService{
+public class NhaCungCapService implements InhaCungCapService{
     private INhaCungCapReponritory nccr = new NhaCungCapReponritory();
 public NhaCungCapService(){
     this.nccr=new NhaCungCapReponritory();

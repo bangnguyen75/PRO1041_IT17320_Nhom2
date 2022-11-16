@@ -150,7 +150,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="174" max="-2" attributes="0"/>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -162,7 +162,7 @@
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Img/supplier.png"/>
+          <Image iconType="3" name="/IMG/supplier.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Nh&#xe0; Cung C&#x1ea5;p"/>
       </Properties>
@@ -256,7 +256,7 @@
     <Component class="javax.swing.JButton" name="btn_them">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Img/plus.png"/>
+          <Image iconType="3" name="/IMG/plus.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Th&#xea;m "/>
       </Properties>
@@ -267,7 +267,7 @@
     <Component class="javax.swing.JButton" name="btn_sua">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Img/tools.png"/>
+          <Image iconType="3" name="/IMG/tools.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
       </Properties>
@@ -278,7 +278,7 @@
     <Component class="javax.swing.JButton" name="btn_xoa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Img/delete.png"/>
+          <Image iconType="3" name="/IMG/delete.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Xo&#xe1;"/>
       </Properties>
@@ -343,7 +343,7 @@
         <Component class="javax.swing.JButton" name="btn_timKiem">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Img/magnifying-glass.png"/>
+              <Image iconType="3" name="/IMG/magnifying-glass.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
