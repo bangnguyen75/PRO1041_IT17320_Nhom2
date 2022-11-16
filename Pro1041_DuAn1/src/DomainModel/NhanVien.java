@@ -20,24 +20,6 @@ public class NhanVien {
     private String sdt;
     private String diaChi;
     private String email;
-    private String idch;
-    private String idcv;
-
-    public NhanVien(String id, String ma, String hoten, Date ngaysinh, String gioitinh, String sdt, String diaChi, String email, String idch, String idcv) {
-        this.id = id;
-        this.ma = ma;
-        this.hoten = hoten;
-        this.ngaysinh = ngaysinh;
-        this.gioitinh = gioitinh;
-        this.sdt = sdt;
-        this.diaChi = diaChi;
-        this.email = email;
-        this.idch = idch;
-        this.idcv = idcv;
-    }
-
-    public NhanVien() {
-    }
 
     public String getId() {
         return id;
@@ -103,20 +85,23 @@ public class NhanVien {
         this.email = email;
     }
 
-    public String getIdch() {
-        return idch;
+    public NhanVien(String id, String ma, String hoten, Date ngaysinh, String gioitinh, String sdt, String diaChi, String email) {
+        this.id = id;
+        this.ma = ma;
+        this.hoten = hoten;
+        this.ngaysinh = ngaysinh;
+        this.gioitinh = gioitinh;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
+        this.email = email;
     }
 
-    public void setIdch(String idch) {
-        this.idch = idch;
+    public NhanVien() {
     }
 
-    public String getIdcv() {
-        return idcv;
-    }
-
-    public void setIdcv(String idcv) {
-        this.idcv = idcv;
+    @Override
+    public String toString() {
+        return  hoten ;
     }
    
    

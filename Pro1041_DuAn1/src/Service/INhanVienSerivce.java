@@ -13,9 +13,17 @@ import java.util.ArrayList;
  * @author BOSS
  */
 public interface INhanVienSerivce {
+
     ArrayList<NhanVien> getlist();
+
     String them(NhanVien nv);
+
     String xoa(String id);
-    String sua(String id,NhanVien nv);
-    IdcvViewModel idcv(String ten);
+
+    String sua(String id, NhanVien nv);
+
+    ArrayList<NhanVien> search(String ma);
+
+    String checkMa(String ma);
+
 }

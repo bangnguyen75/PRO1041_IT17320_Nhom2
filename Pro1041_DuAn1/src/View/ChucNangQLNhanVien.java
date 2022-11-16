@@ -56,7 +56,7 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
         table = (DefaultTableModel) tb_nhanvien.getModel();
         table.setRowCount(0);
         for (NhanVien nv : this.nvs.getlist()) {
-            table.addRow(new Object[]{nv.getId(), nv.getMa(), nv.getHoten(), nv.getNgaysinh(), nv.getGioitinh(), nv.getSdt(), nv.getDiaChi(), nv.getEmail(), nv.getIdch(), nv.getIdcv()});
+            table.addRow(new Object[]{nv.getId(), nv.getMa(), nv.getHoten(), nv.getNgaysinh(), nv.getGioitinh(), nv.getSdt(), nv.getDiaChi(), nv.getEmail()});
         }
     }
 
@@ -81,20 +81,34 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "vui lòng chọn giới tính");
             return null;
         }
-        String tencv = "";
-        String idcv = "";
+        if (txt_sdt.getText().matches("/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số điện thoại");
+            return null;
+        }
+        if (txt_email.getText().matches("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng email");
+            return null;
+        }
+
         Date ngaySinh = ngayssinh.getDate();
         String sdt = txt_sdt.getText().trim();
         String diachi = txt_diachi.getText().trim();
         String email = txt_email.getText().trim();
 
-        String idch = "";
         if (hoTenStr.length() == 0 || maStr.length() == 0 || sdt.length() == 0 || diachi.length() == 0 || email.length() == 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng ko được để trống thông tin");
             return null;
         }
-        NhanVien nv = new NhanVien(idStr, maStr, hoTenStr, ngaySinh, gioiTinh, sdt, diachi, email, idch, idcv);
+        NhanVien nv = new NhanVien(idStr, maStr, hoTenStr, ngaySinh, gioiTinh, sdt, diachi, email);
         return nv;
+    }
+    public void clearForm(){
+        txt_diachi.setText("");
+        txt_email.setText("");
+        txt_hovaten.setText("");
+        txt_ma.setText("");
+        txt_diachi.setText("");
+        btg.clearSelection();
     }
 
     /**
@@ -152,6 +166,11 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         btn_timkiem.setText("Tìm Kiếm");
+        btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_timkiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -410,12 +429,20 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
-        NhanVien nv = this.getForm();
-        if (nv == null) {
+        String maStr = txt_ma.getText().trim();
+        if (nvs.checkMa(maStr) != null) {
+            JOptionPane.showMessageDialog(this, "Mã trùng ko thêm được");
             return;
+        } else {
+            NhanVien nv = this.getForm();
+            if (nv == null) {
+                return;
+            }
+            nvs.them(nv);
+            loadForm();
+            clearForm();
         }
-        nvs.them(nv);
-        loadForm();
+
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void tb_nhanvienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_nhanvienMouseClicked
@@ -470,7 +497,20 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
         }
         this.nvs.sua(idStr, nv);
         loadForm();
+        clearForm();
     }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
+        // TODO add your handling code here:
+        String ten = cbb_timKiem.getSelectedItem().toString();
+        table.setRowCount(0);
+        for (NhanVien nv : this.nvs.search(ten)) {
+            table.addRow(new Object[]{nv.getId(), nv.getMa(), nv.getHoten(), nv.getNgaysinh(), nv.getGioitinh(), nv.getSdt(), nv.getDiaChi(), nv.getEmail()});
+        }
+        JOptionPane.showMessageDialog(this, "Search thành công");
+
+
+    }//GEN-LAST:event_btn_timkiemActionPerformed
 
     /**
      * @param args the command line arguments

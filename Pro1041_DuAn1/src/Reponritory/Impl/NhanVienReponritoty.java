@@ -42,10 +42,8 @@ public class NhanVienReponritoty implements INhanVienReponritory {
                 String sdt = rs.getString("sdt");
                 String diachi = rs.getString("diaChi");
                 String email = rs.getString("email");
-                String idcv = rs.getString("idcv");
 
-                String idch = rs.getString("idch");
-                NhanVien nv = new NhanVien(idStr, maStr, hoTenStr, ngaysinh, gioiTinh, sdt, diachi, email, idch, idcv);
+                NhanVien nv = new NhanVien(idStr, maStr, hoTenStr, ngaysinh, gioiTinh, sdt, diachi, email);
                 listNhanVien.add(nv);
 
             }
@@ -61,7 +59,7 @@ public class NhanVienReponritoty implements INhanVienReponritory {
     public boolean them(NhanVien nv) {
         try {
             Connection conn = Dbcontext.getConnection();
-            String sql = "insert into nhanvien(ma,hoten,ngaysinh,gioitinh,sdt,diachi,email,idch,idcv) values(?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into nhanvien(ma,hoten,ngaysinh,gioitinh,sdt,diachi,email) values(?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getHoten());
@@ -70,8 +68,7 @@ public class NhanVienReponritoty implements INhanVienReponritory {
             ps.setString(5, nv.getSdt());
             ps.setString(6, nv.getDiaChi());
             ps.setString(7, nv.getEmail());
-            ps.setString(8, null);
-            ps.setString(9, null);
+           
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -110,8 +107,7 @@ public class NhanVienReponritoty implements INhanVienReponritory {
             ps.setString(5, nv.getSdt());
             ps.setString(6, nv.getDiaChi());
             ps.setString(7, nv.getEmail());
-            ps.setString(8, null);
-            ps.setString(9, nv.getIdcv());
+
             ps.setString(10, id);
 
             ps.execute();
@@ -124,16 +120,57 @@ public class NhanVienReponritoty implements INhanVienReponritory {
     }
 
     @Override
-    public IdcvViewModel selectId(String ten) {
-        IdcvViewModel  id = new IdcvViewModel();
+    public ArrayList<NhanVien> search(String ten) {
+        ArrayList<NhanVien> listNhanVien = new ArrayList<>();
         try {
             Connection conn = Dbcontext.getConnection();
-            String sql = "select id from chucvu where ten = '"+ten+"'";
-            PreparedStatement ps = conn .prepareStatement(sql);
-        } catch (Exception e) {
+            String sql = "select * from NhanVien where hoten ='" + ten + "'";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, ten);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+            while (rs.next()) {
+                String idStr = rs.getString("id");
+                String maStr = rs.getString("ma");
+
+                java.sql.Date ngaysinh = rs.getDate("NgaySinh");
+                String gioiTinh = rs.getString("gioiTinh");
+                String sdt = rs.getString("sdt");
+                String diachi = rs.getString("diaChi");
+                String email = rs.getString("email");
+
+                NhanVien nv = new NhanVien(idStr, maStr, ten, ngaysinh, gioiTinh, sdt, diachi, email);
+                listNhanVien.add(nv);
+
+            }
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return id;
+        return listNhanVien;
+    }
+
+    @Override
+    public String checkMa(String ma) {
+        String checkMa = null;
+        try {
+            Connection conn = Dbcontext.getConnection();
+            String sql = "select ma from nhanvien where ma ='" + ma + "'";
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+            while (rs.next()) {
+
+                String maStr = rs.getString("ma");
+                checkMa = ma;
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return checkMa;
+    }
 
 }
