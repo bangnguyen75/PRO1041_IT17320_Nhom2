@@ -47,4 +47,8 @@ public class ChatLieu {
     public ChatLieu() {
     }
 
+    @Override
+    public String toString() {
+        return ten;
+    }
 }
