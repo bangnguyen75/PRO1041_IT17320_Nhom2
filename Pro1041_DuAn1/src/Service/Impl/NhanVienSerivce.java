@@ -8,6 +8,7 @@ import DomainModel.NhanVien;
 import Reponritory.INhanVienReponritory;
 import Reponritory.Impl.NhanVienReponritoty;
 import Service.INhanVienSerivce;
+import ViewModel.IdcvViewModel;
 import java.util.ArrayList;
 
 /**
@@ -50,5 +51,15 @@ public class NhanVienSerivce implements INhanVienSerivce{
          return "sửa thất bại";
          }
     }
+
+    @Override
+    public IdcvViewModel idcv(String ten) {
+        
+        return this.nvr.selectId(ten);
+    }
+
+    
+
+  
     
 }

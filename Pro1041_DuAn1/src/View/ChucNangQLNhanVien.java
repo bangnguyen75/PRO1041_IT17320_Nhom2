@@ -41,7 +41,7 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
         this.nvs = new NhanVienSerivce();
         this.cvs = new ChucVuService();
         loadForm();
-        loadCombo(cvs.getlist());
+
         this.btg = new ButtonGroup();
         ChonGioiTinh();
         LoadComboTimKiem();
@@ -56,7 +56,7 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
         table = (DefaultTableModel) tb_nhanvien.getModel();
         table.setRowCount(0);
         for (NhanVien nv : this.nvs.getlist()) {
-            table.addRow(new Object[]{nv.getId(), nv.getMa(), nv.getHoten(), nv.getNgaysinh(), nv.getGioitinh(), nv.getSdt(), nv.getDiaChi(), nv.getEmail(), nv.getCv(), nv.getIdch()});
+            table.addRow(new Object[]{nv.getId(), nv.getMa(), nv.getHoten(), nv.getNgaysinh(), nv.getGioitinh(), nv.getSdt(), nv.getDiaChi(), nv.getEmail(), nv.getIdch(), nv.getIdcv()});
         }
     }
 
@@ -64,13 +64,6 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
         combo = (DefaultComboBoxModel) cbb_timKiem.getModel();
         for (NhanVien nv : this.nvs.getlist()) {
             combo.addElement(nv.getHoten());
-        }
-    }
-
-    public void loadCombo(ArrayList<ChucVu> list) {
-        combo = (DefaultComboBoxModel) cbb_idcv.getModel();
-        for (ChucVu chucVu : list) {
-            combo.addElement(chucVu);
         }
     }
 
@@ -84,22 +77,23 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
         } else {
             gioiTinh = "Nữ";
         }
-       if(!rb_nam.isSelected() && !rb_nu.isSelected()){
-           JOptionPane.showMessageDialog(this, "vui lòng chọn giới tính");
-           return null;
-       }
-      
+        if (!rb_nam.isSelected() && !rb_nu.isSelected()) {
+            JOptionPane.showMessageDialog(this, "vui lòng chọn giới tính");
+            return null;
+        }
+        String tencv = "";
+        String idcv = "";
         Date ngaySinh = ngayssinh.getDate();
         String sdt = txt_sdt.getText().trim();
         String diachi = txt_diachi.getText().trim();
         String email = txt_email.getText().trim();
-        ChucVu cv = (ChucVu) cbb_idcv.getSelectedItem();
+
         String idch = "";
-         if(hoTenStr.length() == 0 || maStr.length() == 0 ||sdt.length() == 0 || diachi.length() == 0|| email.length()==0){
-             JOptionPane.showMessageDialog(this, "Vui lòng ko được để trống thông tin");
-             return null;
-             }
-        NhanVien nv = new NhanVien(idStr, maStr, hoTenStr, ngaySinh, gioiTinh, sdt, diachi, email, idch);
+        if (hoTenStr.length() == 0 || maStr.length() == 0 || sdt.length() == 0 || diachi.length() == 0 || email.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Vui lòng ko được để trống thông tin");
+            return null;
+        }
+        NhanVien nv = new NhanVien(idStr, maStr, hoTenStr, ngaySinh, gioiTinh, sdt, diachi, email, idch, idcv);
         return nv;
     }
 
@@ -140,10 +134,6 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
         txt_diachi = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txt_email = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
-        cbb_idcv = new javax.swing.JComboBox<>();
         btn_them = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -195,10 +185,12 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Mã", "Họ Và Tên", "Ngày Sinh", "Giới TÍnh", "SĐT", "Địa Chỉ", "Email", "IDCh", "IDCV"
+                "ID", "Mã", "Họ Và Tên", "Ngày Sinh", "Giới TÍnh", "SĐT", "Địa Chỉ", "Email", "IDCV", "IDCH"
             }
         ));
         tb_nhanvien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -277,10 +269,6 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
 
         jLabel9.setText("Email");
 
-        jLabel10.setText("IDCH");
-
-        jLabel11.setText("IDCV");
-
         btn_them.setText("Thêm");
         btn_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,34 +319,23 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
                             .addComponent(txt_hovaten, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(ngayssinh, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(98, 98, 98)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(253, 253, 253)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbb_idcv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(ngayssinh, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(98, 98, 98)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                                    .addComponent(rb_nam)
-                                                    .addGap(0, 0, Short.MAX_VALUE))
-                                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jButton5)))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                                .addGap(92, 92, 92)
-                                                .addComponent(rb_nu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addComponent(rb_nam)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(jButton5)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                        .addGap(92, 92, 92)
+                                        .addComponent(rb_nu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(32, 32, 32))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,15 +392,11 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txt_diachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_diachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(cbb_idcv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btn_them)
@@ -542,14 +515,10 @@ public class ChucNangQLNhanVien extends javax.swing.JFrame {
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_timkiem;
     private javax.swing.JButton btn_xoa;
-    private javax.swing.JComboBox<String> cbb_idcv;
     private javax.swing.JComboBox<String> cbb_timKiem;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

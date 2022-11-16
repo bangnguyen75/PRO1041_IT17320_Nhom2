@@ -5,6 +5,7 @@
 package Service;
 
 import DomainModel.NhanVien;
+import ViewModel.IdcvViewModel;
 import java.util.ArrayList;
 
 /**
@@ -16,5 +17,5 @@ public interface INhanVienSerivce {
     String them(NhanVien nv);
     String xoa(String id);
     String sua(String id,NhanVien nv);
-    
+    IdcvViewModel idcv(String ten);
 }

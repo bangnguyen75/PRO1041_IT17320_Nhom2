@@ -11,7 +11,8 @@ import java.util.Date;
  * @author BOSS
  */
 public class NhanVien {
-    private String id ;
+
+    private String id;
     private String ma;
     private String hoten;
     private Date ngaysinh;
@@ -20,9 +21,9 @@ public class NhanVien {
     private String diaChi;
     private String email;
     private String idch;
-    ChucVu cv = new ChucVu();
+    private String idcv;
 
-    public NhanVien(String id, String ma, String hoten, Date ngaysinh, String gioitinh, String sdt, String diaChi, String email, String idch) {
+    public NhanVien(String id, String ma, String hoten, Date ngaysinh, String gioitinh, String sdt, String diaChi, String email, String idch, String idcv) {
         this.id = id;
         this.ma = ma;
         this.hoten = hoten;
@@ -32,6 +33,7 @@ public class NhanVien {
         this.diaChi = diaChi;
         this.email = email;
         this.idch = idch;
+        this.idcv = idcv;
     }
 
     public NhanVien() {
@@ -109,13 +111,13 @@ public class NhanVien {
         this.idch = idch;
     }
 
-    public ChucVu getCv() {
-        return cv;
+    public String getIdcv() {
+        return idcv;
     }
 
-    public void setCv(ChucVu cv) {
-        this.cv = cv;
+    public void setIdcv(String idcv) {
+        this.idcv = idcv;
     }
-    
-             
+   
+   
 }

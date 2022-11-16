@@ -9,12 +9,14 @@ import DomainModel.NhanVien;
 import Reponritory.INhanVienReponritory;
 
 import Utilities.Dbcontext;
+import ViewModel.IdcvViewModel;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.text.html.HTMLDocument;
 
 /**
  *
@@ -41,11 +43,9 @@ public class NhanVienReponritoty implements INhanVienReponritory {
                 String diachi = rs.getString("diaChi");
                 String email = rs.getString("email");
                 String idcv = rs.getString("idcv");
-                ChucVu cv = new ChucVu();
-                cv.setId(idcv);
 
                 String idch = rs.getString("idch");
-               NhanVien nv = new NhanVien(idStr,maStr, hoTenStr, ngaysinh, gioiTinh, sdt, diachi, email, idch);
+                NhanVien nv = new NhanVien(idStr, maStr, hoTenStr, ngaysinh, gioiTinh, sdt, diachi, email, idch, idcv);
                 listNhanVien.add(nv);
 
             }
@@ -71,7 +71,7 @@ public class NhanVienReponritoty implements INhanVienReponritory {
             ps.setString(6, nv.getDiaChi());
             ps.setString(7, nv.getEmail());
             ps.setString(8, null);
-            ps.setString(9, nv.getCv().getId());
+            ps.setString(9, null);
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -111,7 +111,7 @@ public class NhanVienReponritoty implements INhanVienReponritory {
             ps.setString(6, nv.getDiaChi());
             ps.setString(7, nv.getEmail());
             ps.setString(8, null);
-            ps.setString(9, nv.getCv().getId());
+            ps.setString(9, nv.getIdcv());
             ps.setString(10, id);
 
             ps.execute();
@@ -123,6 +123,17 @@ public class NhanVienReponritoty implements INhanVienReponritory {
         }
     }
 
-    
+    @Override
+    public IdcvViewModel selectId(String ten) {
+        IdcvViewModel  id = new IdcvViewModel();
+        try {
+            Connection conn = Dbcontext.getConnection();
+            String sql = "select id from chucvu where ten = '"+ten+"'";
+            PreparedStatement ps = conn .prepareStatement(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+        }
 
 }

@@ -21,18 +21,19 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
     /**
      * Creates new form ChucNangQLNhaCungCapp
      */
-     private DefaultTableModel table;
+    private DefaultTableModel table;
     private DefaultComboBoxModel combo;
     private InhaCungCapService nccs = new NhaCungCapService();
 
     public ChucNangQLNhaCungCapp() {
         initComponents();
-         this.nccs = new NhaCungCapService();
+        this.nccs = new NhaCungCapService();
         addBang();
         addcbb(nccs.getList());
         setLocationRelativeTo(null);
     }
-     public void addBang() {
+
+    public void addBang() {
         table = (DefaultTableModel) tb_nhacungcap.getModel();
         table.setRowCount(0);
         for (NhaCungCap n : this.nccs.getList()) {
@@ -93,9 +94,8 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/supplier.png"))); // NOI18N
         jLabel1.setText("Quản Lý  Nhà Cung Cấp");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 6, 211, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 6, 250, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Nhà Cung Cấp", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
@@ -109,7 +109,6 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
 
         jLabel5.setText("Địa ChỈ");
 
-        btn_them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/plus.png"))); // NOI18N
         btn_them.setText("Thêm ");
         btn_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,15 +165,19 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
                     .addComponent(txt_diachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_them)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 43, -1, 230));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm Kiếm"));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/magnifying-glass.png"))); // NOI18N
         jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -197,7 +200,7 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, -1, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
 
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -219,7 +222,6 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tb_nhacungcap);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/delete.png"))); // NOI18N
         jButton3.setText("Xoá");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +229,6 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
             }
         });
 
-        btn_sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/tools.png"))); // NOI18N
         btn_sua.setText("Sửa");
         btn_sua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +260,7 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_sua)
                     .addComponent(jButton3))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 690, 270));
@@ -285,7 +286,7 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-int row = tb_nhacungcap.getSelectedRow();
+        int row = tb_nhacungcap.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng cần xoá");
             return;
@@ -301,7 +302,7 @@ int row = tb_nhacungcap.getSelectedRow();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tb_nhacungcapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_nhacungcapMouseClicked
-int row = tb_nhacungcap.getSelectedRow();
+        int row = tb_nhacungcap.getSelectedRow();
         if (row == -1) {
             return;
         }
@@ -314,7 +315,7 @@ int row = tb_nhacungcap.getSelectedRow();
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         // TODO add your handling code here:
-         int row = tb_nhacungcap.getSelectedRow();
+        int row = tb_nhacungcap.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng cần sửa ");
             return;
@@ -328,6 +329,16 @@ int row = tb_nhacungcap.getSelectedRow();
         this.nccs.sua(ncc, idStr);
         addBang();
     }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String tenStr = cbb_timkiem.getSelectedItem().toString();
+        table.setRowCount(0);
+        for (NhaCungCap n : this.nccs.getlist(tenStr)) {
+            table.addRow(new Object[]{n.getId(), n.getMa(), n.getTen(), n.getDiaChi()});
+        }
+        JOptionPane.showMessageDialog(this, "Tìm kiếm thành công");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
