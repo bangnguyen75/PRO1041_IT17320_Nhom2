@@ -81,21 +81,21 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txt_diachi = new javax.swing.JTextField();
         btn_them = new javax.swing.JButton();
-        btn_sua = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         cbb_timkiem = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_nhacungcap = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        btn_sua = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Quản Lý  Nhà Cung Cấp");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 6, 250, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 250, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Nhà Cung Cấp", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
@@ -113,22 +113,6 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
         btn_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_themActionPerformed(evt);
-            }
-        });
-
-        btn_sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/tools.png"))); // NOI18N
-        btn_sua.setText("Sửa");
-        btn_sua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_suaActionPerformed(evt);
-            }
-        });
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/delete.png"))); // NOI18N
-        jButton3.setText("Xoá");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -156,11 +140,7 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
                     .addComponent(txt_diachi, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 64, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(btn_sua)
-                .addGap(29, 29, 29)
+                .addGap(0, 271, Short.MAX_VALUE)
                 .addComponent(btn_them)
                 .addGap(57, 57, 57))
         );
@@ -184,16 +164,8 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txt_diachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-
                 .addComponent(btn_them)
                 .addContainerGap(45, Short.MAX_VALUE))
-
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_them)
-                    .addComponent(btn_sua)
-                    .addComponent(jButton3))
-                .addContainerGap(37, Short.MAX_VALUE))
-
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 43, -1, 230));
@@ -250,7 +222,6 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tb_nhacungcap);
 
-
         jButton3.setText("Xoá");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +236,6 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
             }
         });
 
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -273,22 +243,24 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_sua)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(22, 22, 22))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_sua)
                     .addComponent(jButton3))
                 .addContainerGap(34, Short.MAX_VALUE))
-
-                .addContainerGap(61, Short.MAX_VALUE))
-
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 690, 270));
@@ -360,14 +332,12 @@ public class ChucNangQLNhaCungCapp extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
         String tenStr = cbb_timkiem.getSelectedItem().toString();
         table.setRowCount(0);
         for (NhaCungCap n : this.nccs.getlist(tenStr)) {
             table.addRow(new Object[]{n.getId(), n.getMa(), n.getTen(), n.getDiaChi()});
         }
         JOptionPane.showMessageDialog(this, "Tìm kiếm thành công");
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

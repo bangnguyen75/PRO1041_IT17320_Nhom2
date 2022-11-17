@@ -4,12 +4,12 @@
  */
 package Reponritory.Impl;
 
-import DomainModel.ChucVu;
+
 import DomainModel.NhanVien;
 import Reponritory.INhanVienReponritory;
 
 import Utilities.Dbcontext;
-import ViewModel.IdcvViewModel;
+
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
